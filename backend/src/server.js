@@ -17,7 +17,7 @@ const __dirname = path.resolve();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://digisoch-chat-app-full-stack-mern-website.onrender.com",
     credentials: true, // allow frontend to send cookies
   })
 );
