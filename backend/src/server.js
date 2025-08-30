@@ -15,13 +15,25 @@ const PORT = process.env.PORT;
 
 const __dirname = path.resolve();
 
+const allowedOrigins = [
+  "http://localhost:5173", // development
+  "https://digisoch-chat-app-full-stack-mern-website.onrender.com", // render frontend
+];
+
 app.use(
   cors({
-    origin: "https://digisoch-chat-app-full-stack-mern-website.onrender.com",
-    credentials: true, // allow frontend to send cookies
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   })
 );
 
+app.options("*", cors());
 app.use(express.json());
 app.use(cookieParser());
 
