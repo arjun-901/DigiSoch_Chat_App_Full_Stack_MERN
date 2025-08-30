@@ -13,12 +13,10 @@ import { connectDB } from "./lib/db.js";
 const app = express();
 const __dirname = path.resolve();
 
-
 const allowedOrigins = [
-  "http://localhost:5173", 
+  "http://localhost:5173",
   "https://digi-soch-chat-app-full-stack-mern.vercel.app",
 ];
-
 
 app.use(
   cors({
@@ -37,11 +35,14 @@ app.options("*", cors());
 app.use(express.json());
 app.use(cookieParser());
 
+// ✅ root route added
+app.get("/", (req, res) => {
+  res.send("✅ API is running...");
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/chat", chatRoutes);
-
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
@@ -55,7 +56,6 @@ const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
-
 
 connectDB();
 export default app;
