@@ -17,7 +17,7 @@ const __dirname = path.resolve();
 
 const allowedOrigins = [
   "http://localhost:5173", // development
-  "https://digisoch-chat-app-full-stack-mern-website.onrender.com", // render frontend
+  "https://digi-soch-chat-app-full-stack-mern.vercel.app", 
 ];
 
 app.use(
